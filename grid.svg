@@ -1,0 +1,76 @@
+<svg width="256" height="256" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:figma="http://www.figma.com/figma/ns">
+<title>Frame</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(0 1)" figma:type="canvas">
+<mask id="mask0_alpha" mask-type="alpha">
+<path d="M 0 -1L 256 -1L 256 255L 0 255L 0 -1Z" fill="#FFFFFF"/>
+</mask>
+<g id="Frame" style="mix-blend-mode:normal;" mask="url(#mask0_alpha)" figma:type="frame">
+<path d="M 0 -1L 256 -1L 256 255L 0 255L 0 -1Z" fill="#FFFFFF"/>
+<g id="Line" style="mix-blend-mode:normal;" figma:type="line">
+<use xlink:href="#path0_stroke" transform="matrix(6.12323e-17 1 -1 6.12323e-17 62 -1)" fill="#BDBDBD" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Line" style="mix-blend-mode:normal;" figma:type="line">
+<use xlink:href="#path1_stroke" transform="matrix(6.12323e-17 1 -1 6.12323e-17 88 -1)" fill="#BDBDBD" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Line" style="mix-blend-mode:normal;" figma:type="line">
+<use xlink:href="#path1_stroke" transform="matrix(6.12323e-17 1 -1 6.12323e-17 241 -1)" fill="#BDBDBD" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Line" style="mix-blend-mode:normal;" figma:type="line">
+<use xlink:href="#path1_stroke" transform="matrix(6.12323e-17 1 -1 6.12323e-17 37 -1)" fill="#BDBDBD" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Line" style="mix-blend-mode:normal;" figma:type="line">
+<use xlink:href="#path1_stroke" transform="matrix(6.12323e-17 1 -1 6.12323e-17 165 -1)" fill="#BDBDBD" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Line" style="mix-blend-mode:normal;" figma:type="line">
+<use xlink:href="#path1_stroke" transform="matrix(6.12323e-17 1 -1 6.12323e-17 216 -1)" fill="#BDBDBD" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Line" style="mix-blend-mode:normal;" figma:type="line">
+<use xlink:href="#path1_stroke" transform="matrix(6.12323e-17 1 -1 6.12323e-17 11 -1)" fill="#BDBDBD" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Line" style="mix-blend-mode:normal;" figma:type="line">
+<use xlink:href="#path1_stroke" transform="matrix(6.12323e-17 1 -1 6.12323e-17 113 -1)" fill="#BDBDBD" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Line" style="mix-blend-mode:normal;" figma:type="line">
+<use xlink:href="#path1_stroke" transform="matrix(6.12323e-17 1 -1 6.12323e-17 139 -1)" fill="#BDBDBD" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Line" style="mix-blend-mode:normal;" figma:type="line">
+<use xlink:href="#path0_stroke" transform="matrix(6.12323e-17 1 -1 6.12323e-17 190 -1)" fill="#BDBDBD" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Line" style="mix-blend-mode:normal;" figma:type="line">
+<use xlink:href="#path0_stroke" transform="matrix(-1 1.22465e-16 -1.22465e-16 -1 256 61)" fill="#BDBDBD" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Line" style="mix-blend-mode:normal;" figma:type="line">
+<use xlink:href="#path1_stroke" transform="matrix(-1 1.22465e-16 -1.22465e-16 -1 256 87)" fill="#BDBDBD" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Line" style="mix-blend-mode:normal;" figma:type="line">
+<use xlink:href="#path1_stroke" transform="matrix(-1 1.22465e-16 -1.22465e-16 -1 256 240)" fill="#BDBDBD" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Line" style="mix-blend-mode:normal;" figma:type="line">
+<use xlink:href="#path1_stroke" transform="matrix(-1 1.22465e-16 -1.22465e-16 -1 256 36)" fill="#BDBDBD" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Line" style="mix-blend-mode:normal;" figma:type="line">
+<use xlink:href="#path1_stroke" transform="matrix(-1 1.22465e-16 -1.22465e-16 -1 256 164)" fill="#BDBDBD" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Line" style="mix-blend-mode:normal;" figma:type="line">
+<use xlink:href="#path1_stroke" transform="matrix(-1 1.22465e-16 -1.22465e-16 -1 256 215)" fill="#BDBDBD" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Line" style="mix-blend-mode:normal;" figma:type="line">
+<use xlink:href="#path1_stroke" transform="matrix(-1 1.22465e-16 -1.22465e-16 -1 256 10)" fill="#BDBDBD" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Line" style="mix-blend-mode:normal;" figma:type="line">
+<use xlink:href="#path1_stroke" transform="matrix(-1 1.22465e-16 -1.22465e-16 -1 256 112)" fill="#BDBDBD" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Line" style="mix-blend-mode:normal;" figma:type="line">
+<use xlink:href="#path1_stroke" transform="matrix(-1 1.22465e-16 -1.22465e-16 -1 256 138)" fill="#BDBDBD" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Line" style="mix-blend-mode:normal;" figma:type="line">
+<use xlink:href="#path0_stroke" transform="matrix(-1 1.22465e-16 -1.22465e-16 -1 256 189)" fill="#BDBDBD" style="mix-blend-mode:normal;"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_stroke" d="M 0 0L 256 0L 256 -2L 0 -2L 0 0Z"/>
+<path id="path1_stroke" d="M 0 0L 256 0L 256 -1L 0 -1L 0 0Z"/>
+</defs>
+</svg>

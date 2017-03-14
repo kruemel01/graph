@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Graph</title>
+  <style>
+    html, body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: auto;
+      font-family: Lato;
+    }
+
+    h1 {
+      margin: 5% 15%;
+      font-weight: 900;
+    }
+
+    #app {
+      margin: 0 15%;
+      height: 50%;
+      width: 70%;
+      background-color: rgb(220, 220, 220);
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+  <h1>Graph</h1>
+  <div id="app">
+  </div>
+  <script src="Noodles.js"></script>
+  <script>
+    let rootElement = document.getElementById("app");
+    let editor = new Noodles.Editor(rootElement);
+    editor.addNode("Multiply");
+  </script>
+</body>
+</html>
