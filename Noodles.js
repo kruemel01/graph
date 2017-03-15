@@ -68,10 +68,12 @@ Noodles.Editor = class {
         node.style.width = "300px";
         node.style.height = "250px";
         node.style.backgroundColor = "#ffffff";
-        node.style.boxShadow = "0px 0px 30px rgba(100,100,100,0.5)";
+        node.style.boxShadow = "0px 0px 25px rgba(100,100,100,0.5)";
         node.style.padding = "5px";
         node.style.overflow = "hidden";
         node.style.borderRadius = "5px";
+        node.style.border = "1px solid rgba(100,100,100,0.2)";
+        node.style.position = "absolute";
 
         let title = document.createElement("span");
         title.style.width = "90%";
@@ -95,7 +97,7 @@ Noodles.Editor = class {
         let outputs = document.createElement("ul");
         node.appendChild(outputs);
 
-        title.addEventListener("mousedown", )
+        title.addEventListener("mousedown", this.handleNodeTitleMouseDown);
 
         this.nodes.push(node);
 
@@ -120,8 +122,13 @@ Noodles.Editor = class {
         this.dragContainer.style.marginTop = this.dragContainerOffset.y + "px";
     }
 
-    moveNode(node, offset) {
-        this.asdfasdf
+    moveNode(offset) {
+        if (this.draggedNode) {
+            let x = this.draggedNode.offsetLeft + offset.x;
+            let y = this.draggedNode.offsetTop + offset.y;
+            this.draggedNode.style.marginLeft = x + "px";
+            this.draggedNode.style.marginTop = y + "px";
+        }
     }
 
     handleEditorMouseDown(e) {
@@ -136,8 +143,10 @@ Noodles.Editor = class {
     }
 
     handleNodeTitleMouseDown(e) {
+        e.preventDefault(); e.stopPropagation();
+
         this.dragMode = 2;
-        this.draggedNode = e.target.offsetParent;
+        this.draggedNode = e.currentTarget.parentElement;
 
         this.mousePosition = {
             x: e.pageX,
@@ -161,10 +170,14 @@ Noodles.Editor = class {
         }
         if (this.dragMode === 2) {
             e.preventDefault(); e.stopPropagation();
+            console.log("mode 2");
             let diff = {
                 x: e.pageX - this.mousePosition.x,
                 y: e.pageY - this.mousePosition.y,
             }
+            this.mousePosition.x = e.pageX;
+            this.mousePosition.y = e.pageY;
+            this.moveNode(diff);
         }
     }
 
@@ -176,7 +189,7 @@ Noodles.Editor = class {
     }
 
     handleEditorWheel(e) {
-        console.log(e.deltaY);
+        /* Issues with node dragging
         this.contentScale = this.contentScale - 0.001 * e.deltaY;
         if (this.contentScale > 4) {
             this.contentScale = 4;
@@ -186,7 +199,7 @@ Noodles.Editor = class {
         }
 
         console.log(this.contentScale);
-        this.dragContainer.style.transform = `scale(${this.contentScale})`;
+        this.dragContainer.style.transform = `scale(${this.contentScale})`;*/
     }
 }
 
