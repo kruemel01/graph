@@ -1,208 +1,164 @@
-Noodles = {};
-
-Noodles.Editor = class {
-    constructor(el) {
-
-        this.handleMouseMove = this.handleMouseMove.bind(this);
-        this.handleMouseUp = this.handleMouseUp.bind(this);
-        this.handleEditorMouseDown = this.handleEditorMouseDown.bind(this);
-        this.handleEditorWheel = this.handleEditorWheel.bind(this);
-        this.handleNodeTitleMouseDown = this.handleNodeTitleMouseDown.bind(this);
-
-        this.dragMode = 0;
-        this.draggedNode = null;
-        this.mousePosition = null;
-        this.dragContainerOffset = {
-            x: 0,
-            y: 0,
-        };
-        this.contentScale = 1;
-
-        this.nodes = [];
-        this.paths = [];
-
-        let rootContainer = document.createElement("div");
-        rootContainer.style.width = "100%";
-        rootContainer.style.height = "100%";
-        rootContainer.style.margin = "0";
-        rootContainer.style.position = "relative";
-        rootContainer.style.overflow = "hidden";
-        this.rootContainer = rootContainer;
-
-        let dragContainer = document.createElement("div");
-        dragContainer.style.width = "0px";
-        dragContainer.style.height = "0px";
-        dragContainer.style.marginTop = this.dragContainerOffset + "px";
-        dragContainer.style.marginLeft = this.dragContainerOffset + "px";
-        dragContainer.style.position = "absolute";
-        rootContainer.appendChild(dragContainer);
-        this.dragContainer = dragContainer;
-
-        let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-        svg.style.position = "absolute";
-        svg.style.overflow = "visible";
-        dragContainer.appendChild(svg);
-        this.svg = svg;
-        this.svg.ns = svg.namespaceURI;
-
-        let nodeContainer = document.createElement("div");
-        nodeContainer.style.position = "absolute";
-        dragContainer.appendChild(nodeContainer);
-        this.nodeContainer = nodeContainer;
+var Noodles;
+(function (Noodles) {
+    var Editor = (function () {
+        function Editor(el) {
+            var _this = this;
+            this.handleEditorMouseDown = function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                _this.mousePosition = {
+                    x: e.pageX,
+                    y: e.pageY
+                };
+                window.addEventListener("mousemove", _this.handleMouseMove);
+                window.addEventListener("mouseup", _this.handleMouseUp);
+            };
+            this.handleMouseMove = function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                var diff = {
+                    x: e.pageX - _this.mousePosition.x,
+                    y: e.pageY - _this.mousePosition.y
+                };
+                _this.mousePosition.x = e.pageX;
+                _this.mousePosition.y = e.pageY;
+                _this.moveDragContainer(diff);
+            };
+            this.handleMouseUp = function (e) {
+                _this.mousePosition = null;
+                window.removeEventListener("mousemove", _this.handleMouseMove);
+                window.removeEventListener("mouseup", _this.handleMouseUp);
+            };
+            this.handleEditorWheel = function (e) {
+                // TODO: reimplement
+                /* Issues with node dragging
+                this.contentScale = this.contentScale - 0.001 * e.deltaY;
+                if (this.contentScale > 4) {
+                    this.contentScale = 4;
+                }
+                if (this.contentScale < 0.25) {
+                    this.contentScale = 0.25;
+                }
         
-        el.appendChild(rootContainer);
-
-        this.rootContainer.addEventListener("mousedown", this.handleEditorMouseDown);
-        this.rootContainer.addEventListener("wheel", this.handleEditorWheel);
-
-        let shape = document.createElementNS(this.svg.ns, "circle");
-        shape.setAttributeNS(null, "cx", 0);
-        shape.setAttributeNS(null, "cy", 0);
-        shape.setAttributeNS(null, "r", 10);
-        shape.setAttributeNS(null, "fill", "blue");
-        this.svg.appendChild(shape);
-    }
-
-    addNode(name) {
-        let node = document.createElement("div");
-        node.style.width = "300px";
-        node.style.height = "250px";
-        node.style.backgroundColor = "#ffffff";
-        node.style.boxShadow = "0px 0px 25px rgba(100,100,100,0.5)";
-        node.style.padding = "5px";
-        node.style.overflow = "hidden";
-        node.style.borderRadius = "5px";
-        node.style.border = "1px solid rgba(100,100,100,0.2)";
-        node.style.position = "absolute";
-
-        let title = document.createElement("span");
-        title.style.width = "90%";
-        title.style.boxSizing = "border-box";
-        title.style.margin = "0px 5%";
-        title.style.padding = "15px";
-        title.style.display = "block";
-        title.style.fontWeight = "600";
-        title.style.color = "#8e44ad";
-        title.style.borderBottom = "0.5px solid rgba(100,100,100,0.2)";
-        title.style.cursor = "default";
-        title.innerHTML = name;
-        node.appendChild(title);
-
-        let controls = document.createElement("div");
-        node.appendChild(controls);
-
-        let inputs = document.createElement("ul");
-        node.appendChild(inputs);
-
-        let outputs = document.createElement("ul");
-        node.appendChild(outputs);
-
-        title.addEventListener("mousedown", this.handleNodeTitleMouseDown);
-
-        this.nodes.push(node);
-
-        this.nodeContainer.appendChild(node);
-        
-    }
-
-    getElementOffset(el) {
-        let offset = { x: 0, y: 0 };
-        while (el) {
-            offset.x = el.offsetTop;
-            offset.y = el.offsetLeft;
-            el = el.offsetParent;
+                console.log(this.contentScale);
+                this.dragContainer.style.transform = `scale(${this.contentScale})`;*/
+            };
+            this.draggedNode = null;
+            this.mousePosition = null;
+            this.dragContainerOffset = { x: 0, y: 0 };
+            this.nodes = [];
+            var rootContainer = document.createElement("div");
+            rootContainer.className = "NoodlesEditorRootContainer";
+            this.rootContainer = rootContainer;
+            var dragContainer = document.createElement("div");
+            dragContainer.className = "NoodlesEditorDragContainer";
+            rootContainer.appendChild(dragContainer);
+            this.dragContainer = dragContainer;
+            var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.style.position = "absolute";
+            svg.style.overflow = "visible";
+            dragContainer.appendChild(svg);
+            this.svg = svg;
+            var nodeContainer = document.createElement("div");
+            nodeContainer.className = "NoodlesEditorNodeContainer";
+            dragContainer.appendChild(nodeContainer);
+            this.nodeContainer = nodeContainer;
+            el.appendChild(rootContainer);
+            this.rootContainer.addEventListener("mousedown", this.handleEditorMouseDown);
+            this.rootContainer.addEventListener("wheel", this.handleEditorWheel);
+            var shape = document.createElementNS(this.svg.namespaceURI, "circle");
+            shape.setAttributeNS(null, "cx", "0");
+            shape.setAttributeNS(null, "cy", "0");
+            shape.setAttributeNS(null, "r", "10");
+            shape.setAttributeNS(null, "fill", "blue");
+            this.svg.appendChild(shape);
         }
-        return offset
-    }
-
-    moveDragContainer(offset) {
-        this.dragContainerOffset.x = this.dragContainerOffset.x + offset.x;
-        this.dragContainerOffset.y = this.dragContainerOffset.y + offset.y;
-        this.dragContainer.style.marginLeft = this.dragContainerOffset.x + "px";
-        this.dragContainer.style.marginTop = this.dragContainerOffset.y + "px";
-    }
-
-    moveNode(offset) {
-        if (this.draggedNode) {
-            let x = this.draggedNode.offsetLeft + offset.x;
-            let y = this.draggedNode.offsetTop + offset.y;
-            this.draggedNode.style.marginLeft = x + "px";
-            this.draggedNode.style.marginTop = y + "px";
-        }
-    }
-
-    handleEditorMouseDown(e) {
-        this.dragMode = 1;
-        this.mousePosition = {
-            x: e.pageX,
-            y: e.pageY,
-        }
-
-        window.addEventListener("mousemove", this.handleMouseMove);
-        window.addEventListener("mouseup", this.handleMouseUp);
-    }
-
-    handleNodeTitleMouseDown(e) {
-        e.preventDefault(); e.stopPropagation();
-
-        this.dragMode = 2;
-        this.draggedNode = e.currentTarget.parentElement;
-
-        this.mousePosition = {
-            x: e.pageX,
-            y: e.pageY,
+        Editor.prototype.addNode = function (name) {
+            var node = new Node(name);
+            this.nodeContainer.appendChild(node.DOMElement);
         };
-
-        window.addEventListener("mousemove", this.handleMouseMove);
-        window.addEventListener("mouseup", this.handleMouseUp);
-    }
-
-    handleMouseMove(e) {
-        if (this.dragMode === 1) {
-            e.preventDefault(); e.stopPropagation();
-            let diff = {
-                x: e.pageX - this.mousePosition.x,
-                y: e.pageY - this.mousePosition.y,
+        Editor.prototype.getElementOffset = function (el) {
+            var offset = { x: 0, y: 0 };
+            while (el) {
+                offset.x = el.offsetTop;
+                offset.y = el.offsetLeft;
+                el = el.offsetParent;
             }
-            this.mousePosition.x = e.pageX;
-            this.mousePosition.y = e.pageY;
-            this.moveDragContainer(diff);
+            return offset;
+        };
+        Editor.prototype.moveDragContainer = function (offset) {
+            this.dragContainerOffset.x = this.dragContainerOffset.x + offset.x;
+            this.dragContainerOffset.y = this.dragContainerOffset.y + offset.y;
+            this.dragContainer.style.marginLeft = this.dragContainerOffset.x + "px";
+            this.dragContainer.style.marginTop = this.dragContainerOffset.y + "px";
+        };
+        return Editor;
+    }());
+    Noodles.Editor = Editor;
+    var Node = (function () {
+        function Node(name, initialPosition) {
+            var _this = this;
+            this.handleNodeTitleMouseDown = function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log("node mousedown");
+                _this.lastMousePosition = {
+                    x: e.pageX,
+                    y: e.pageY
+                };
+                console.log(_this.lastMousePosition);
+                window.addEventListener("mousemove", _this.handleMouseMove);
+                window.addEventListener("mouseup", _this.handleMouseUp);
+            };
+            this.handleMouseMove = function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                var diff = {
+                    x: e.pageX - _this.lastMousePosition.x,
+                    y: e.pageY - _this.lastMousePosition.y
+                };
+                _this.lastMousePosition.x = e.pageX;
+                _this.lastMousePosition.y = e.pageY;
+                _this.move(diff);
+            };
+            this.handleMouseUp = function (e) {
+                _this.lastMousePosition = null;
+                window.removeEventListener("mousemove", _this.handleMouseMove);
+                window.removeEventListener("mouseup", _this.handleMouseUp);
+            };
+            this.name = name;
+            this.nodePosition = initialPosition || {
+                x: 0,
+                y: 0
+            };
+            this.DOMElement = document.createElement("div");
+            this.DOMElement.className = "NoodlesNode";
+            var title = document.createElement("span");
+            title.className = "NoodlesNodeTitle";
+            title.innerHTML = name;
+            this.DOMElement.appendChild(title);
+            var controls = document.createElement("div");
+            this.DOMElement.appendChild(controls);
+            var inputs = document.createElement("ul");
+            this.DOMElement.appendChild(inputs);
+            var outputs = document.createElement("ul");
+            this.DOMElement.appendChild(outputs);
+            this.update();
+            title.addEventListener("mousedown", this.handleNodeTitleMouseDown);
         }
-        if (this.dragMode === 2) {
-            e.preventDefault(); e.stopPropagation();
-            console.log("mode 2");
-            let diff = {
-                x: e.pageX - this.mousePosition.x,
-                y: e.pageY - this.mousePosition.y,
-            }
-            this.mousePosition.x = e.pageX;
-            this.mousePosition.y = e.pageY;
-            this.moveNode(diff);
-        }
-    }
-
-    handleMouseUp(e) {
-        this.dragMode = 0;
-        this.mousePosition = null;
-        window.removeEventListener("mousemove", this.handleMouseMove);
-        window.removeEventListener("mouseup", this.handleMouseUp);
-    }
-
-    handleEditorWheel(e) {
-        /* Issues with node dragging
-        this.contentScale = this.contentScale - 0.001 * e.deltaY;
-        if (this.contentScale > 4) {
-            this.contentScale = 4;
-        }
-        if (this.contentScale < 0.25) {
-            this.contentScale = 0.25;
-        }
-
-        console.log(this.contentScale);
-        this.dragContainer.style.transform = `scale(${this.contentScale})`;*/
-    }
-}
-
-Noodles.Graph = class {
-
-}
+        Node.prototype.registeredWithId = function (id) {
+            this.id = id;
+        };
+        Node.prototype.move = function (diff) {
+            this.nodePosition.x = this.nodePosition.x + diff.x;
+            this.nodePosition.y = this.nodePosition.y + diff.y;
+            this.update();
+        };
+        Node.prototype.update = function () {
+            this.DOMElement.style.marginLeft = this.nodePosition.x + "px";
+            this.DOMElement.style.marginTop = this.nodePosition.y + "px";
+        };
+        return Node;
+    }());
+    Noodles.Node = Node;
+})(Noodles || (Noodles = {}));

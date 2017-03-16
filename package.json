@@ -1,0 +1,22 @@
+{
+  "name": "graph",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Noodles.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kruemel01/graph.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kruemel01/graph/issues"
+  },
+  "homepage": "https://github.com/kruemel01/graph#readme",
+  "devDependencies": {
+    "typescript": "^2.2.1"
+  }
+}
